@@ -10,11 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Formula;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +37,8 @@ public class Usufructuary implements java.io.Serializable{
 	@Column(name = "user_id")  
 	private Long id;
 	
-	/*@Formula ("name||' '||surname")
-	String Label;*/
+	@Formula ("name||' '||surname")
+	String Label;
 	
 	/*private boolean aktywny = true;
 	
@@ -76,13 +76,13 @@ public class Usufructuary implements java.io.Serializable{
 		this.typeUser = typeUser;		
 	}	
 
-	/*public String getLabel() {
+	public String getLabel() {
 		return Label;
 	}
 
 	public void setLabel(String label) {
 		Label = label;
-	}*/
+	}
 
 /*	public boolean isAktywny() {
 		return aktywny;

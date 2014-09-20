@@ -71,8 +71,8 @@
             <label for="user" class="col-lg-2 control-label">Użytkownik</label>
             <div class="col-lg-10">
 				<form:select path="user">
-				<%-- <form:option value="-"></form:option>
-				<form:options items="" itemValue="" itemLabel=""/> --%>
+				<form:option value="-"></form:option>
+				<form:options items="${selectallusers}" itemValue="label" itemLabel="label"/>
 				</form:select>
             </div>
         </div>  

@@ -1,5 +1,7 @@
 package pl.dmcs.zai.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import pl.dmcs.zai.dao.UsufructuaryRepository;
+import pl.dmcs.zai.dictionary.DictionaryForm;
 import pl.dmcs.zai.domain.Usufructuary;
 
 

@@ -12,8 +12,8 @@
         <!-- <a class="navbar-brand" href="#">Serwis</a> -->
         <div class="nav-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Strona główna</a></li>
-                <li><a href='<s:url value="/addnotification"></s:url>'>Dodaj zgłoszenie</a></li>
+                <li class="active"><a href="/ex2">Strona główna</a></li>
+                <li><a href='<s:url value="/addnotification"></s:url>'>Zgłoszenie</a></li>
                 <li><a href='<s:url value="/addvalue"></s:url>'>Wartość słownikowa</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">

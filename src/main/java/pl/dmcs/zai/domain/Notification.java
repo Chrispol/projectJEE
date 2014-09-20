@@ -98,7 +98,6 @@ public class Notification {
 	}
 	
 	
-	
 	public Long getCategory_id() {
 		return category_id;
 	}

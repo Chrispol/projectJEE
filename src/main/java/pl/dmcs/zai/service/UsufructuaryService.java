@@ -31,6 +31,7 @@ public class UsufructuaryService implements UserDetailsService {
 	protected void initialize() {
 		Usufructuary user = new Usufructuary("KrzysztofTumicki27@gmail.com", "admin","Krzysztof","Tumicki","603325711", "ROLE_ADMIN");
 		usufructuaryRepository.save(user);
+		usufructuaryRepository.save(new Usufructuary("AndrzejSuchara@gmail.com", "admin","Andrzej","Suchara","603325711", "ROLE_ADMIN"));
 	}
 	
 	@Override

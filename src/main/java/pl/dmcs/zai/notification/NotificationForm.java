@@ -79,9 +79,4 @@ public class NotificationForm {
 		this.user = user;
 	}
 
-
-	/*public Notification createNotification() {
-    	
-    	return new Notification();
-    }*/
 }

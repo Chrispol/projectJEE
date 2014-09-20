@@ -1,9 +1,12 @@
 package pl.dmcs.zai.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,4 +46,15 @@ public class UsufructuaryRepository  {
 			return null;
 		}
 	}	
+	
+	public List<Usufructuary> selectAllUsers() {
+		
+		try {
+			log.debug("selectallusers usufructuary");
+			return entityManager.createNamedQuery(Usufructuary.SELECT_ALL_USERS, Usufructuary.class)
+					.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}	
+	}
 }
