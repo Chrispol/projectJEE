@@ -3,12 +3,15 @@ package pl.dmcs.zai.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,8 +20,9 @@ import javax.persistence.Table;
 public class Notification {
 
 	@Id
-	@SequenceGenerator(name = "Notification_SEQUENCE", sequenceName = "Notification_seq")
-	@GeneratedValue(generator = "Notification_SEQUENCE")
+	@SequenceGenerator(name = "notification_SEQUENCE", sequenceName = "notification_seq")
+	@GeneratedValue(generator = "notification_SEQUENCE")
+	@Column(name = "notification_id")
 	private Long id;
 	
 	@Column(length = 300)
@@ -27,20 +31,20 @@ public class Notification {
 	@Column(length = 120)
 	private String name;
 	
-	@ManyToOne
-	Category category;
+	@Column(nullable = false)
+	private Long category_id;
 	
-	@ManyToOne
-	Priority priority;
+	@Column(nullable = false)
+	private Long subcategory_id;
 	
-	@ManyToOne
-	Status status;
+	@Column(nullable = false)
+	private Long type_id;
 	
-	@ManyToOne
-	Subcategory subcategory;
+	@Column(nullable = false)
+	private Long status_id;
 	
-	@ManyToOne
-	Type type;
+	@Column(nullable = false)
+	private Long priority_id;
 	
 	@ManyToOne
 	Usufructuary user;
@@ -49,19 +53,22 @@ public class Notification {
 		
 	}
 	
-	public Notification(String shortDescription, Category category,
-			Priority priority, Status status, Subcategory subcategory, Type type) {
+
+	public Notification(String shortDescription, String name, Long category_id,
+			Long subcategory_id, Long type_id, Long status_id,
+			Long priority_id) {
 		super();
 		this.shortDescription = shortDescription;
-		this.category = category;
-		this.priority = priority;
-		this.status = status;
-		this.subcategory = subcategory;
-		this.type = type;
+		this.name = name;
+		this.category_id = category_id;
+		this.subcategory_id = subcategory_id;
+		this.type_id = type_id;
+		this.status_id = status_id;
+		this.priority_id = priority_id;
+		
 	}
 
-	
-	
+
 	public String getName() {
 		return name;
 	}
@@ -82,46 +89,6 @@ public class Notification {
 		return id;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public Priority getPriority() {
-		return priority;
-	}
-
-	public void setPriority(Priority priority) {
-		this.priority = priority;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public Subcategory getSubcategory() {
-		return subcategory;
-	}
-
-	public void setSubcategory(Subcategory subcategory) {
-		this.subcategory = subcategory;
-	}
-
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
 	public Usufructuary getUser() {
 		return user;
 	}
@@ -130,6 +97,48 @@ public class Notification {
 		this.user = user;
 	}
 	
+	
+	
+	public Long getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(Long category_id) {
+		this.category_id = category_id;
+	}
+
+	public Long getSubcategory_id() {
+		return subcategory_id;
+	}
+
+	public void setSubcategory_id(Long subcategory_id) {
+		this.subcategory_id = subcategory_id;
+	}
+
+	public Long getType_id() {
+		return type_id;
+	}
+
+	public void setType_id(Long type_id) {
+		this.type_id = type_id;
+	}
+
+	public Long getStatus_id() {
+		return status_id;
+	}
+
+	public void setStatus_id(Long status_id) {
+		this.status_id = status_id;
+	}
+
+	public Long getPriority_id() {
+		return priority_id;
+	}
+
+	public void setPriority_id(Long priority_id) {
+		this.priority_id = priority_id;
+	}
+
 	@OneToMany(mappedBy = "notification")
 	private List<Comment> commentList = new ArrayList<Comment>();
 

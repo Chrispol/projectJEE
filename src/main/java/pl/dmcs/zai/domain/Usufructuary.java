@@ -56,6 +56,7 @@ public class Usufructuary implements java.io.Serializable{
 	private String phoneNumber;
 	
 	private String typeUser = "ROLE_USER";
+	
 
     protected Usufructuary() {
 

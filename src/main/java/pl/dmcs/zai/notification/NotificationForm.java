@@ -1,34 +1,16 @@
 package pl.dmcs.zai.notification;
 
-import org.hibernate.validator.constraints.NotBlank;
-
-import pl.dmcs.zai.domain.Category;
-import pl.dmcs.zai.domain.Notification;
-import pl.dmcs.zai.domain.Priority;
-import pl.dmcs.zai.domain.Status;
-import pl.dmcs.zai.domain.Subcategory;
-import pl.dmcs.zai.domain.Type;
-
 public class NotificationForm {
 
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 
 	private String shortDescription;
-
-    @NotBlank(message = NotificationForm.NOT_BLANK_MESSAGE)
-	private Category category;
-    
-    @NotBlank(message = NotificationForm.NOT_BLANK_MESSAGE)
-    private Priority priority;
-    
-    @NotBlank(message = NotificationForm.NOT_BLANK_MESSAGE)
-    private Status status;
-    
-    @NotBlank(message = NotificationForm.NOT_BLANK_MESSAGE)
-    private Subcategory subcategory;
-    
-    @NotBlank(message = NotificationForm.NOT_BLANK_MESSAGE)
-    private Type type;
+	private String name;
+	private String category;
+	private String subcategory;
+	private String type;
+	private String status;
+	private String priority;
 	
     public String getShortDescription() {
 		return shortDescription;
@@ -38,48 +20,56 @@ public class NotificationForm {
 		this.shortDescription = shortDescription;
 	}
 
-	public Category getCategory() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	public Priority getPriority() {
-		return priority;
-	}
-
-	public void setPriority(Priority priority) {
-		this.priority = priority;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public Subcategory getSubcategory() {
+	public String getSubcategory() {
 		return subcategory;
 	}
 
-	public void setSubcategory(Subcategory subcategory) {
+	public void setSubcategory(String subcategory) {
 		this.subcategory = subcategory;
 	}
 
-	public Type getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
-	public Notification createNotification() {
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getPriority() {
+		return priority;
+	}
+
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
+
+	/*public Notification createNotification() {
     	
-    	return new Notification(getShortDescription(), getCategory(), getPriority(), getStatus(), getSubcategory(), getType());
-    }
+    	return new Notification();
+    }*/
 }

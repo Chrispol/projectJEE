@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
@@ -11,9 +12,9 @@
         <!-- <a class="navbar-brand" href="#">Serwis</a> -->
         <div class="nav-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href='<s:url value="/addNotification"></s:url>'>DUPA</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="#">Strona główna</a></li>
+                <li><a href='<s:url value="/addnotification"></s:url>'>Dodaj zgłoszenie</a></li>
+                <li><a href='<s:url value="/addvalue"></s:url>'>Wartość słownikowa</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <security:authorize access="!isAuthenticated()">
