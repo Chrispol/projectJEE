@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,10 +21,14 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "usufructuary")
-@NamedQuery(name = Usufructuary.FIND_BY_EMAIL, query = "select a from Usufructuary a where a.email = :email")
+@NamedQueries({
+@NamedQuery(name = Usufructuary.FIND_BY_EMAIL, query = "select a from Usufructuary a where a.email = :email"),
+@NamedQuery(name = Usufructuary.SELECT_ALL_USERS, query = "select a from Usufructuary a")
+})
 public class Usufructuary implements java.io.Serializable{
 
 	public static final String FIND_BY_EMAIL = "Usufructuary.findByEmail";
+	public static final String SELECT_ALL_USERS = "Usufructuary.SelectAllUsers";
 	private static final Logger LOG = LoggerFactory.getLogger(Usufructuary.class);
 	
 	@Id

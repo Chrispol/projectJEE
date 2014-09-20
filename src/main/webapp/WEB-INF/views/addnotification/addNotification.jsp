@@ -15,41 +15,51 @@
                 <form:errors path="name" element="span" class="help-block"/>
             </div>
         </div>
-<%--         <div class="form-group">
+          <div class="form-group">
             <label for="priority" class="col-lg-2 control-label">Priorytet</label>
             <div class="col-lg-10">
-                <form:select path="priority" class="form-control" cssErrorClass="form-control" id="priority"/>
-                <form:errors path="priority" element="span" class="help-block"/>
+				<form:select path="priority">
+				<%-- <form:option value="-"></form:option>
+				<form:options items="" itemValue="" itemLabel=""/> --%>
+				</form:select>
             </div>
-        </div>
-        <div class="form-group">
+        </div>   
+         <div class="form-group">
             <label for="category" class="col-lg-2 control-label">Kategoria</label>
             <div class="col-lg-10">
-                <form:input path="category" class="form-control" cssErrorClass="form-control" id="category"/>
-                <form:errors path="category" element="span" class="help-block"/>
+				<form:select path="category">
+				<%-- <form:option value="-"></form:option>
+				<form:options items="" itemValue="" itemLabel=""/> --%>
+				</form:select>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="subcategory" class="col-lg-2 control-label">Podkategoria</label>
+        </div> 
+         <div class="form-group">
+            <label for="subcategory" class="col-lg-2 control-label">Podkategria</label>
             <div class="col-lg-10">
-                <form:input path="subcategory" class="form-control" cssErrorClass="form-control" id="subcategory"/>
-                <form:errors path="subcategory" element="span" class="help-block"/>
+				<form:select path="subcategory">
+				<%-- <form:option value="-"></form:option>
+				<form:options items="" itemValue="" itemLabel=""/> --%>
+				</form:select>
             </div>
         </div>
-        <div class="form-group">
+      	<div class="form-group">
             <label for="type" class="col-lg-2 control-label">Typ</label>
             <div class="col-lg-10">
-                <form:input path="type" class="form-control" cssErrorClass="form-control" id="type"/>
-                <form:errors path="type" element="span" class="help-block"/>
+				<form:select path="type">
+				<%-- <form:option value="-"></form:option>
+				<form:options items="" itemValue="" itemLabel=""/> --%>
+				</form:select>
             </div>
         </div>
-        <div class="form-group">
+         <div class="form-group">
             <label for="status" class="col-lg-2 control-label">Status</label>
             <div class="col-lg-10">
-                <form:input path="status" class="form-control" cssErrorClass="form-control" id="status"/>
-                <form:errors path="status" element="span" class="help-block"/>
+				<form:select path="status">
+				<%-- <form:option value="-"></form:option>
+				<form:options items="" itemValue="" itemLabel=""/> --%>
+				</form:select>
             </div>
-        </div> --%>
+        </div>          
         <div class="form-group">
             <label for="shortDescription" class="col-lg-2 control-label">Opis:</label>
             <div class="col-lg-10">
@@ -57,13 +67,15 @@
                 <form:errors path="shortDescription" element="span" class="help-block"/>
             </div>
         </div>
-<%--          <div class="form-group">
+         <div class="form-group">
             <label for="user" class="col-lg-2 control-label">Użytkownik</label>
             <div class="col-lg-10">
-                <form:textarea path="user" class="form-control" cssErrorClass="form-control" id="user"/>
-                <form:errors path="user" element="span" class="help-block"/>
+				<form:select path="user">
+				<%-- <form:option value="-"></form:option>
+				<form:options items="" itemValue="" itemLabel=""/> --%>
+				</form:select>
             </div>
-        </div> --%>
+        </div>  
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <button type="submit" class="btn btn-default">Dodaj</button>
