@@ -1,10 +1,9 @@
 package pl.dmcs.zai.dictionary;
 
-import java.util.List;
-
 import org.hibernate.validator.constraints.NotBlank;
 
 import pl.dmcs.zai.dictionary.DictionaryType.Type;
+import pl.dmcs.zai.domain.Dictionary;
 
 public class DictionaryForm {
 
@@ -12,18 +11,9 @@ public class DictionaryForm {
 
     @NotBlank(message = DictionaryForm.NOT_BLANK_MESSAGE)
 	private String name;
-    //private List<Type> typeList = Arrays.asList(DictionaryType.Type.values());
+    
     private Type type;
     
-	/*public List<Type> getTypeList() {
-		return typeList;
-	}
-
-	public void setTypeList(List<Type> typeList) {
-		this.typeList = typeList;
-	}*/
-
-	
 	public Type getType() {
 		return type;
 	}
@@ -38,6 +28,11 @@ public class DictionaryForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Dictionary createDictionary() {
+		
+		return new Dictionary(getName(), getType());
 	}
 	
 }

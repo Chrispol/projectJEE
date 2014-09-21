@@ -1,4 +1,4 @@
-package pl.dmcs.zai.dictionary;
+package pl.dmcs.zai.comment;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,25 +9,26 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.dmcs.zai.dao.UsufructuaryRepository;
-import pl.dmcs.zai.domain.Dictionary;
-
+import pl.dmcs.zai.domain.Comment;
 
 @Repository
 @Transactional(readOnly = true)
-public class DictionaryRepository {
+public class CommentRepository {
 
+	private static final Logger LOG = LoggerFactory.getLogger(UsufructuaryRepository.class);
+	
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	
-private static final Logger LOG = LoggerFactory.getLogger(UsufructuaryRepository.class);
-	
+
 	@Transactional
-	public Dictionary save(Dictionary dictionary) {
-		entityManager.persist(dictionary);
-		LOG.debug("Save dictionary value");
-		return dictionary;
+	public Comment save(Comment comment) {
+		entityManager.persist(comment);
+		LOG.debug("Save comment");
+		return comment;
 	}
-	
-	
 }
+
+	
+	
+	
+	

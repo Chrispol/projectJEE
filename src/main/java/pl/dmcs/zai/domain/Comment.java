@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -14,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "comment")
 public class Comment {
 
+	public static final String FIND_BY_ID = "Comment.findById";
+	
 	@Id
 	@SequenceGenerator(name = "comment_SEQUENCE", sequenceName = "comment_seq")
 	@GeneratedValue(generator = "comment_SEQUENCE")

@@ -9,6 +9,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import pl.dmcs.zai.dictionary.DictionaryType.Type;
+
 @Entity
 @Table(name = "dictionary")
 public class Dictionary {
@@ -22,16 +24,15 @@ public class Dictionary {
 	@Column(nullable = false)
 	private String name;
 	@Column(nullable = false)
-	private String type;
+	private Type type;
 	
 	@Column(nullable = true)
 	private Long parent;
 	
-	public Dictionary(String name, String type, Long parent) {
+	public Dictionary(String name, Type type) {
 		super();
 		this.name = name;
 		this.type = type;
-		this.parent = parent;
 	}
 
 	protected Dictionary(){
@@ -58,11 +59,13 @@ public class Dictionary {
 		this.parent = parent;
 	}
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
+
+	
 }

@@ -32,18 +32,23 @@ public class Notification {
 	private String name;
 	
 	@Column(nullable = false)
+	@JoinColumn(name = "category_id")
 	private Long category_id;
 	
 	@Column(nullable = false)
+	@JoinColumn(name = "subcategory_id")
 	private Long subcategory_id;
 	
 	@Column(nullable = false)
+	@JoinColumn(name = "type_id")
 	private Long type_id;
 	
 	@Column(nullable = false)
+	@JoinColumn(name = "status_id")
 	private Long status_id;
 	
 	@Column(nullable = false)
+	@JoinColumn(name = "priority_id")
 	private Long priority_id;
 	
 	@ManyToOne

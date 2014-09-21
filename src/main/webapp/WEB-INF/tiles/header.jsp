@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
