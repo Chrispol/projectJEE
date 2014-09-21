@@ -26,5 +26,6 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 			<security:password-encoder ref="passwordEncoder" />
 		</security:authentication-provider>
 	</security:authentication-manager>
-
+	<bean id="dictionaryRepository" class="pl.dmcs.zai.dictionary.DictionaryRepository"></bean>
+	<bean id="dictionaryService" class="pl.dmcs.zai.dictionary.DictionaryService"></bean>
 </beans>

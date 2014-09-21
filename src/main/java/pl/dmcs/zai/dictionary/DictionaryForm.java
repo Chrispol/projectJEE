@@ -1,24 +1,27 @@
 package pl.dmcs.zai.dictionary;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import pl.dmcs.zai.dictionary.DictionaryType.Type;
 import pl.dmcs.zai.domain.Dictionary;
 
 public class DictionaryForm {
 
+	private static final Logger LOG = LoggerFactory.getLogger(DictionaryForm.class);
+	
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 
     @NotBlank(message = DictionaryForm.NOT_BLANK_MESSAGE)
 	private String name;
     
-    private Type type;
+    private EnumDictionaryType type;
     
-	public Type getType() {
+	public EnumDictionaryType getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(EnumDictionaryType type) {
 		this.type = type;
 	}
 
@@ -31,7 +34,7 @@ public class DictionaryForm {
 	}
 	
 	public Dictionary createDictionary() {
-		
+		LOG.debug("createDictionary in DictionaryForm");
 		return new Dictionary(getName(), getType());
 	}
 	

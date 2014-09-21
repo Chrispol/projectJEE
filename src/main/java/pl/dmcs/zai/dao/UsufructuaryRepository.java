@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,4 +56,6 @@ public class UsufructuaryRepository  {
 			return null;
 		}	
 	}
+	
+	
 }

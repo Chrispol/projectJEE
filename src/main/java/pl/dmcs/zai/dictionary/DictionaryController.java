@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pl.dmcs.zai.dictionary.DictionaryType.Type;
 import pl.dmcs.zai.support.web.MessageHelper;
-import pl.dmcs.zai.dictionary.DictionaryForm;
 
 @Controller
 public class DictionaryController {
@@ -27,17 +25,21 @@ public class DictionaryController {
 	@Autowired
 	private DictionaryService dictionaryService;
 	
+	public void setDictionaryService(DictionaryService dictionaryService) {
+		this.dictionaryService = dictionaryService;
+	}
+
 	@RequestMapping(value = "addvalue")
 	public DictionaryForm addvalue() {
 		return new DictionaryForm();
 	}
 	
 	@ModelAttribute("typeList")
-    public List<Type> typeList()
+    public List<EnumDictionaryType> typeList()
     {
 		log.debug("modelatribute");
-		log.debug("lista:" + Arrays.asList(Type.values()));
-        return Arrays.asList(Type.values());
+		log.debug("lista:" + Arrays.asList(EnumDictionaryType.values()));
+        return Arrays.asList(EnumDictionaryType.values());
     }
 	
 	

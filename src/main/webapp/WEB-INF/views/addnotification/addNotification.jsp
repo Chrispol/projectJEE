@@ -19,8 +19,8 @@
             <label for="priority" class="col-lg-2 control-label">Priorytet</label>
             <div class="col-lg-10">
 				<form:select path="priority">
-				<%-- <form:option value="-"></form:option>
-				<form:options items="" itemValue="" itemLabel=""/> --%>
+				<form:option value="-"></form:option>
+				<form:options items="${selectpriority}" itemValue="name" itemLabel="name"/>
 				</form:select>
             </div>
         </div>   
@@ -28,8 +28,8 @@
             <label for="category" class="col-lg-2 control-label">Kategoria</label>
             <div class="col-lg-10">
 				<form:select path="category">
-				<%-- <form:option value="-"></form:option>
-				<form:options items="" itemValue="" itemLabel=""/> --%>
+				<form:option value="-"></form:option>
+				<form:options items="${selectcategory}" itemValue="name" itemLabel="name"/>
 				</form:select>
             </div>
         </div> 
@@ -55,8 +55,8 @@
             <label for="status" class="col-lg-2 control-label">Status</label>
             <div class="col-lg-10">
 				<form:select path="status">
-				<%-- <form:option value="-"></form:option>
-				<form:options items="" itemValue="" itemLabel=""/> --%>
+				<form:option value="-"></form:option>
+				<form:options items="${selectstatus}" itemValue="name" itemLabel="name"/>
 				</form:select>
             </div>
         </div>          

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.dmcs.zai.dao.UsufructuaryRepository;
+import pl.dmcs.zai.dictionary.DictionaryRepository;
+import pl.dmcs.zai.domain.Dictionary;
 import pl.dmcs.zai.domain.Usufructuary;
 import pl.dmcs.zai.support.web.MessageHelper;
 
@@ -26,9 +28,32 @@ public class NotificationController {
 	@Autowired
 	private UsufructuaryRepository usufructuaryRepository;
 	
+	@Autowired
+	private DictionaryRepository dictionaryRepository;
+	
 	@ModelAttribute("selectallusers")
 	public List<Usufructuary> selectallusers() {
 		return usufructuaryRepository.selectAllUsers();
+	}
+	
+	@ModelAttribute("selectpriority")
+	public List<Dictionary> selectpriority() {
+		log.debug("selectpriority: " + dictionaryRepository.selectPriority().size());
+		return dictionaryRepository.selectPriority();
+		
+	}
+	
+	@ModelAttribute("selectstatus")
+	public List<Dictionary> selectstatus() {
+		log.debug("selectstatus: " + dictionaryRepository.selectStatus().size());
+		return dictionaryRepository.selectStatus();
+		
+	}
+	
+	@ModelAttribute("selectcategory")
+	public List<Dictionary> selectcategry() {
+		return dictionaryRepository.selectCategory();
+		
 	}
 	
 	@RequestMapping(value = "addnotification")

@@ -10,15 +10,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Entity
 @Table(name = "notification")
+/*@NamedQueries({
+@NamedQuery(name = Notification.SELECT_PRIORITY, query = "select a from Usufructuary a where a.email = :email"),
+@NamedQuery(name = Notification.SELECT_CATEGORY, query = "select a from Usufructuary a")
+})*/
 public class Notification {
 
+	/*public static final String FIND_BY_EMAIL = "Notification.findByEmail";
+	public static final String SELECT_ALL_USERS = "Notification.SelectAllUsers";*/
+	private static final Logger LOG = LoggerFactory.getLogger(Notification.class);
+		
 	@Id
 	@SequenceGenerator(name = "notification_SEQUENCE", sequenceName = "notification_seq")
 	@GeneratedValue(generator = "notification_SEQUENCE")
@@ -32,7 +45,7 @@ public class Notification {
 	private String name;
 	
 	@Column(nullable = false)
-	@JoinColumn(name = "category_id")
+	@JoinColumn/*(name = "category_id")*/
 	private Long category_id;
 	
 	@Column(nullable = false)
