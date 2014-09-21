@@ -22,7 +22,7 @@
                 <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="j_password" maxlength="20">
             </div>
         </div>
-        <div class="form-group">
+<!--         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <div class="checkbox">
                     <label>
@@ -30,7 +30,7 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <button type="submit" class="btn btn-default">Zaloguj</button>

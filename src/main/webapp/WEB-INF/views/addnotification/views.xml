@@ -5,8 +5,8 @@
 <tiles-definitions>
 	<definition name="addnotification" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/addnotification/addnotification.jsp" />
-		<put-attribute name="header" value="" type="string" />
-		<put-attribute name="footer" value="" type="string" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
 		<put-list-attribute name="styles">
 			<add-attribute value="signin.css" />
 		</put-list-attribute>
