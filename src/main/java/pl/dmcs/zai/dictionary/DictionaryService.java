@@ -1,5 +1,7 @@
 package pl.dmcs.zai.dictionary;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -39,21 +41,16 @@ public class DictionaryService {
 		dictionaryRepository.save(new Dictionary("Anulowane", EnumDictionaryType.STATUS, null));
 	}
 
-	public void chooseParent(Dictionary dictionary) {
-		
-		switch(dictionary.getType().toString()) {
-		
-		case "Podkategoria":
-			dictionary.setParent(new Long(1));
-			
-		case "Typ":
-			dictionary.setParent(new Long(2));
-			
-		default:
-			dictionary.setParent(null);
-		}
-		
+	public void addDictionaryValue(Dictionary dictionary) {
 		dictionaryRepository.save(dictionary);
+	}
+	
+	public List<Dictionary> searchAllCategories(){
+		return dictionaryRepository.selectCategory();
+	}
+	
+	public List<Dictionary> searchDictionariesByParent(Long dictionary){
+		return dictionaryRepository.selectDictionaryByParent(dictionary);
 	}
 	
 }

@@ -15,27 +15,82 @@ public class DictionaryForm {
     @NotBlank(message = DictionaryForm.NOT_BLANK_MESSAGE)
 	private String name;
     
-    private EnumDictionaryType type;
-    
-	public EnumDictionaryType getType() {
-		return type;
+    private EnumDictionaryType dictionaryType;
+
+
+    private Long category;
+
+    private Long subcategory;
+
+
+	
+	public Dictionary createDictionary() {
+		LOG.debug("createDictionary in DictionaryForm - dictionaryType:"+dictionaryType);
+			switch (dictionaryType) {
+			  case SUBCATEGORY:
+			    {
+			    	return new Dictionary(getName(), getDictionaryType(), category);
+			    	}
+			  case TYPE:
+			    {
+			    	return new Dictionary(getName(), getDictionaryType(), subcategory);
+			    	}
+
+			  default:
+					return new Dictionary(getName(), getDictionaryType());
+			}			
 	}
 
-	public void setType(EnumDictionaryType type) {
-		this.type = type;
-	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Dictionary createDictionary() {
-		LOG.debug("createDictionary in DictionaryForm");
-		return new Dictionary(getName(), getType());
+
+
+
+	public EnumDictionaryType getDictionaryType() {
+		return dictionaryType;
 	}
+
+
+
+	public void setDictionaryType(EnumDictionaryType dictionaryType) {
+		this.dictionaryType = dictionaryType;
+	}
+
+
+
+	public Long getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(Long category) {
+		this.category = category;
+	}
+
+
+
+	public Long getSubcategory() {
+		return subcategory;
+	}
+
+
+
+	public void setSubcategory(Long subcategory) {
+		this.subcategory = subcategory;
+	}
+
+
+
+	
 	
 }

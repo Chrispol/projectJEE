@@ -56,6 +56,19 @@ private static final Logger LOG = LoggerFactory.getLogger(DictionaryRepository.c
 			return null;
 		}	
 	}
+
+	public List<Dictionary> selectDictionaryByParent(Long dictionary) {
+		
+		try {
+			LOG.debug("selectDictionaryByParent");
+			return entityManager.createNamedQuery(Dictionary.SELECT_DICTIONARY_BY_PARENT, Dictionary.class)
+					.setParameter("paramParent", dictionary)
+					.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}	
+	}
+	
 	
 	public List<Dictionary> selectStatus() {
 		

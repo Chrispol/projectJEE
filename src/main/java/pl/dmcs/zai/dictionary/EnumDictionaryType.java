@@ -14,5 +14,9 @@ package pl.dmcs.zai.dictionary;
 		public String getMessage() {
 			return message;
 		}	
+		
+		public String getName(){
+			return this.name();
+		}
 
 }
