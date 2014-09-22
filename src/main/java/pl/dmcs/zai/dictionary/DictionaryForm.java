@@ -19,11 +19,18 @@ public class DictionaryForm {
     
     private EnumDictionaryType dictionaryType;
 
+    private String dictionaryTypeString;
+    
+    private Long parentId;
 
+    
     private Long category;
 
     private Long subcategory;
 
+    private Long oldCategory;
+
+    private Long oldSubcategory;
 
 	
 	public Dictionary createDictionary() {
@@ -102,6 +109,73 @@ public class DictionaryForm {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+
+
+	public Long getOldCategory() {
+		return oldCategory;
+	}
+
+
+
+	public void setOldCategory(Long oldCategory) {
+		this.oldCategory = oldCategory;
+	}
+
+
+
+	public Long getOldSubcategory() {
+		return oldSubcategory;
+	}
+
+
+
+	public void setOldSubcategory(Long oldSubcategory) {
+		this.oldSubcategory = oldSubcategory;
+	}
+
+
+
+	public String getDictionaryTypeString() {
+		return dictionaryTypeString;
+	}
+
+
+
+	public void setDictionaryTypeString(String dictionaryTypeString) {
+		this.dictionaryTypeString = dictionaryTypeString;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "DictionaryForm [id=" + id + ", name=" + name
+				+ ", dictionaryType=" + dictionaryType
+				+ ", dictionaryTypeString=" + dictionaryTypeString
+				+ ", parentId=" + parentId + ", category=" + category
+				+ ", subcategory=" + subcategory + ", oldCategory="
+				+ oldCategory + ", oldSubcategory=" + oldSubcategory + "]";
+	}
+
+
+
+
+
+
+
 
 
 

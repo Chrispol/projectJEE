@@ -12,6 +12,8 @@
 <c:url var="findSubcategoriesByCategory" value="/subcategories" />
 <c:url var="findCategories" value="/categories" />
 
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#categories').change(
@@ -35,19 +37,22 @@ $(document).ready(function() {
 </script>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#dictionaries').change(
+$(document).ready(
 			function() {
-				if($(this).val() == 'SUBCATEGORY' || $(this).val() == 'TYPE'){
+				if($('#dictionaries').val() == 'SUBCATEGORY' || $('#dictionaries').val() == 'TYPE'){
 					$.getJSON('${findCategories}', {
-						categoryName : $(this).val(),
 						ajax : 'true'
 					}, function(data) {
-						var html = '<option value="-1">Wybierz kategorie</option>';
+						var html = '';
 						var len = data.length;
 						for ( var i = 0; i < len; i++) {
-							html += '<option value="' + data[i].id + '">'
+							html += '<option value="' + data[i].id + '" ';
+							
+							if(data[i].id == $('#oldCategory').val()) html+='selected';		
+							
+							html+=' >'
 									+ data[i].name + '</option>';
+									
 						}
 						$('#categories').html(html);
 					});
@@ -56,17 +61,29 @@ $(document).ready(function() {
 				}else{
 					$("#categoryId").css("visibility","hidden")					
 				}
-				if($(this).val() == 'TYPE'){
-					var html = '<option value="-1">Wybierz podkategorie</option>';
-					$('#subcategories').html(html);
-					
+				if($('#dictionaries').val() == 'TYPE'){
+					$.getJSON('${findSubcategoriesByCategory}', {
+						categoryName : $('#oldCategory').val(),
+						ajax : 'true'
+					}, function(data) {
+						var html = '';
+						var len = data.length;
+						for ( var i = 0; i < len; i++) {
+							html += '<option value="' + data[i].id + '" ';
+							
+							if(data[i].id == $('#oldSubcategory').val()) html+='selected';		
+							
+							html+=' >'
+									+ data[i].name + '</option>';
+						}
+						$('#subcategories').html(html);
+					});
 					$("#subcategoryId").css("visibility","visible")
 				}else{
 					$("#subcategoryId").css("visibility","hidden")					
 				}
 				
 			});
-});
 </script>
 
 
@@ -78,9 +95,9 @@ $(document).ready(function() {
         <legend>Aktualizuj wartość słownikową</legend>
         <form:errors path="" element="p" class="text-error"/>
          <div class="form-group">
-            <label for="name" class="col-lg-2 control-label">Id</label>
+            <label for="id" class="col-lg-2 control-label">Id</label>
             <div class="col-lg-10">
-                <form:input path="id"  id="name" maxlength="120" disabled="true" />
+                <form:input path="id"  id="id" maxlength="120" disabled="true" />
             </div>
         </div>    
          <div class="form-group">
@@ -91,17 +108,16 @@ $(document).ready(function() {
             </div>
         </div>    
           <div class="form-group">
-            <label for="dictionaryType" class="col-lg-2 control-label">Typ słownika</label>
+            <label for="dictionaries" class="col-lg-2 control-label">Typ słownika</label>
             <div class="col-lg-10">
-				<form:select id="dictionaries" path="dictionaryType">
-				<form:option label="Wybierz" value="-1"></form:option>
+				<form:select id="dictionaries" disabled="true" path="dictionaryType" >
 				<form:options items="${dictionaryType}" itemValue="name"  itemLabel="message"/>
 				</form:select>
             </div>
         </div> 
 
           <div id = "categoryId" class="form-group" style="visibility: hidden">
-           <label for="category" class="col-lg-2 control-label">Wybierz kategorie</label>
+           <label for="categories" class="col-lg-2 control-label">Wybierz kategorie</label>
             <div class="col-lg-10">
 				<form:select id="categories" path="category">
 				</form:select>
@@ -110,7 +126,7 @@ $(document).ready(function() {
 
 
           <div id = "subcategoryId" class="form-group" style="visibility: hidden">
-            <label for="dictionaryType" class="col-lg-2 control-label">Podkategoria</label>
+            <label for="subcategories" class="col-lg-2 control-label">Wybierz podkategorie</label>
             <div class="col-lg-10">
 		       	<form:select id="subcategories" path="subcategory">
 				<form:option value="-1">Wybierz podkategorie</form:option>		       	
@@ -124,5 +140,14 @@ $(document).ready(function() {
                 <button type="submit" class="btn btn-default">Zapisz</button>
             </div>
         </div>
+        
+        <form:input path="oldCategory"  style="visibility:hidden" id="oldCategory" maxlength="120"/>
+        <form:input path="oldSubcategory" style="visibility:hidden" id="oldSubcategory" maxlength="120"/>
+        <form:input path="dictionaryTypeString" style="visibility:hidden" id="dictionaryTypeString" maxlength="120"/>
+        
+
+        
+        
+        
     </fieldset>
 </form:form>

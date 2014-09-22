@@ -16,6 +16,10 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 		<security:intercept-url pattern="/addnotification" access="permitAll" />
 		<security:intercept-url pattern="/addvalue" access="permitAll" />
 		<security:intercept-url pattern="/categoriesList" access="permitAll" />
+		<security:intercept-url pattern="/subcategoriesList" access="permitAll" />
+		<security:intercept-url pattern="/typesList" access="permitAll" />
+		<security:intercept-url pattern="/prioritiesList" access="permitAll" />
+		<security:intercept-url pattern="/statusesList" access="permitAll" />
 		<security:intercept-url pattern="/delvalue" access="permitAll" />
 		<security:intercept-url pattern="/editvalue" access="permitAll" />
 		<security:intercept-url pattern="/subcategories" access="permitAll" />

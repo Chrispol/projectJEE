@@ -44,7 +44,27 @@ public class DictionaryController {
 	public DictionaryForm categoriesList() {
 		return new DictionaryForm();
 	}
-	
+
+	@RequestMapping(value = "subcategoriesList")	
+	public DictionaryForm subcategoriesList() {
+		return new DictionaryForm();
+	}
+
+	@RequestMapping(value = "typesList")	
+	public DictionaryForm typesList() {
+		return new DictionaryForm();
+	}
+
+	@RequestMapping(value = "prioritiesList")	
+	public DictionaryForm prioritiesList() {
+		return new DictionaryForm();
+	}
+
+	@RequestMapping(value = "statusesList")	
+	public DictionaryForm statusesList() {
+		return new DictionaryForm();
+	}
+
 	
 	@ModelAttribute("dictionaryType")
     public List<EnumDictionaryType> dictionaryType()
@@ -60,7 +80,30 @@ public class DictionaryController {
 		return dictionaryService.searchAllCategories();
     }
 
+	@ModelAttribute("subcategoryList")
+    public List<Dictionary> subcategoryList()
+    {
+		return dictionaryService.searchAllSubcategories();
+    }
 	
+	@ModelAttribute("typeList")
+    public List<Dictionary> typeList()
+    {
+		return dictionaryService.searchAllTypes();
+    }
+
+	@ModelAttribute("priorityList")
+    public List<Dictionary> priorityList()
+    {
+		return dictionaryService.searchAllPriorities();
+    }
+
+	@ModelAttribute("statusList")
+    public List<Dictionary> statusList()
+    {
+		return dictionaryService.searchAllStatuses();
+    }
+
 	
 /*	@ModelAttribute("subcategories")
     public List<Dictionary> subcategoryList()
@@ -91,9 +134,15 @@ public class DictionaryController {
 			log.info(errors.toString());
 			return null;
 		}
-		dictionaryService.addDictionaryValue(dictionaryForm.createDictionary());
-        MessageHelper.addSuccessAttribute(ra, "Dodano wartośc słownikową.");
-		return "redirect:/categoriesList";
+		log.info("editvalue - dictionaryForm:"+dictionaryForm);		
+		if(dictionaryForm.getDictionaryType() == null && dictionaryForm.getDictionaryTypeString() != null){
+			dictionaryForm.setDictionaryType(EnumDictionaryType.valueOf(dictionaryForm.getDictionaryTypeString()));
+		}
+		log.info("editvalue - dictionaryForm - aft:"+dictionaryForm);		
+		Dictionary toSave = dictionaryForm.createDictionary();
+		dictionaryService.updateDictionaryValue(toSave, dictionaryForm.getId());
+        MessageHelper.addSuccessAttribute(ra, "Zaktualizowano wartośc słownikową o id:"+dictionaryForm.getId());
+		return "redirect:/"+dictionaryForm.getDictionaryType().getListContext();
 	}
 	
 	
@@ -102,7 +151,35 @@ public class DictionaryController {
 		log.info("del category for categoryId" + categoryId);
 		return "redirect:/categoriesList";
 	}
+
+
+	@RequestMapping(value = "/editvalue", method = RequestMethod.GET)
+	public 	DictionaryForm editvalue(@RequestParam(value = "id", required = true) Long id) {
+		log.info("editvalue for category " + id);
+		Dictionary dict = dictionaryService.findById(id);
+		log.info("editvalue- get - dict:"+dict);
+		DictionaryForm dictForm = new DictionaryForm();
+		dictForm.setId(dict.getId());
+		dictForm.setName(dict.getName());
+		dictForm.setDictionaryType(dict.getType());
+		dictForm.setDictionaryTypeString(dict.getType().name());		
+		dictForm.setParentId(dict.getParent());
+		if(EnumDictionaryType.SUBCATEGORY.equals(dict.getType())){
+			dictForm.setOldCategory(dictionaryService.findById(dict.getParent()).getId());
+		}
+		if(EnumDictionaryType.TYPE.equals(dict.getType())){
+			Dictionary subcategory = dictionaryService.findById(dict.getParent());
+			dictForm.setOldSubcategory(subcategory.getId());
+			dictForm.setOldCategory(dictionaryService.findById(subcategory.getParent()).getId());
+		}
+
+		log.info("editvalue- get - dictForm:"+dictForm);
+
+		return dictForm;
+		
+	}
 	
+
 	
 	
 	@RequestMapping(value = "/subcategories", method = RequestMethod.GET)
@@ -114,19 +191,6 @@ public class DictionaryController {
 	}
 
 
-	@RequestMapping(value = "/editvalue", method = RequestMethod.GET)
-	public 	DictionaryForm editvalue(@RequestParam(value = "id", required = true) Long id) {
-		log.info("editvalue for category " + id);
-		Dictionary dict = dictionaryService.findById(id);
-		DictionaryForm dictForm = new DictionaryForm();
-		dictForm.setId(dict.getId());
-		dictForm.setName(dict.getName());
-		dictForm.setDictionaryType(dict.getType());
-		
-		return dictForm;
-		
-	}
-	
 	
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public @ResponseBody

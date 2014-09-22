@@ -37,8 +37,8 @@ private static final Logger LOG = LoggerFactory.getLogger(DictionaryRepository.c
 		try {
 			LOG.debug("selectpriority dictionary");
 			LOG.debug("MyLOg:" + EnumDictionaryType.PRIORITY);
-			return entityManager.createNamedQuery(Dictionary.SELECT_PRIORITY, Dictionary.class)
-					.setParameter("priority", EnumDictionaryType.PRIORITY)
+			return entityManager.createNamedQuery(Dictionary.SELECT_DICTIONARY_BY_TYPE, Dictionary.class)
+					.setParameter("dictionary", EnumDictionaryType.PRIORITY)
 					.getResultList();
 		} catch (PersistenceException e) {
 			return null;
@@ -48,15 +48,40 @@ private static final Logger LOG = LoggerFactory.getLogger(DictionaryRepository.c
 	public List<Dictionary> selectCategory() {
 		
 		try {
-			LOG.debug("selectcategory dictionary");
-			return entityManager.createNamedQuery(Dictionary.SELECT_CATEGORY, Dictionary.class)
-					.setParameter("category", EnumDictionaryType.CATEGORY)
+			LOG.debug("select all category dictionary");
+			return entityManager.createNamedQuery(Dictionary.SELECT_DICTIONARY_BY_TYPE, Dictionary.class)
+					.setParameter("dictionary", EnumDictionaryType.CATEGORY)
 					.getResultList();
 		} catch (PersistenceException e) {
 			return null;
 		}	
 	}
 
+	public List<Dictionary> selectSubcategory() {
+		
+		try {
+			LOG.debug("select all subcategory dictionary");
+			return entityManager.createNamedQuery(Dictionary.SELECT_DICTIONARY_BY_TYPE, Dictionary.class)
+					.setParameter("dictionary", EnumDictionaryType.SUBCATEGORY)
+					.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}	
+	}
+
+	public List<Dictionary> selectType() {
+		
+		try {
+			LOG.debug("select all type dictionary");
+			return entityManager.createNamedQuery(Dictionary.SELECT_DICTIONARY_BY_TYPE, Dictionary.class)
+					.setParameter("dictionary", EnumDictionaryType.TYPE)
+					.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}	
+	}
+	
+	
 	public List<Dictionary> selectDictionaryByParent(Long dictionary) {
 		
 		try {
@@ -74,8 +99,8 @@ private static final Logger LOG = LoggerFactory.getLogger(DictionaryRepository.c
 		
 		try {
 			LOG.debug("selectstatus dictionary");
-			return entityManager.createNamedQuery(Dictionary.SELECT_STATUS, Dictionary.class)
-					.setParameter("status", EnumDictionaryType.STATUS)
+			return entityManager.createNamedQuery(Dictionary.SELECT_DICTIONARY_BY_TYPE, Dictionary.class)
+					.setParameter("dictionary", EnumDictionaryType.STATUS)
 					.getResultList();
 		} catch (PersistenceException e) {
 			return null;
@@ -92,5 +117,21 @@ private static final Logger LOG = LoggerFactory.getLogger(DictionaryRepository.c
 		}	
 	}
 
+	public Dictionary update(Dictionary dict, Long id) {
+		
+		try {
+			LOG.debug("select dictionary by id:"+id);
+			Dictionary d =  entityManager.find(Dictionary.class, id);
+			d.setName(dict.getName());
+			d.setType(dict.getType());
+			d.setParent(dict.getParent());
+			d= entityManager.merge(d);
+			entityManager.flush();
+			return d;
+		} catch (PersistenceException e) {
+			return null;
+		}	
+	}
+	
 	
 }

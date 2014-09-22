@@ -4,7 +4,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 
-	<legend>Kategorie</legend>
+		<legend>Typy</legend>
+	
 	<div>
 	<table border="1" style=" border: double; width: 100%">
 	<tr>
@@ -13,7 +14,7 @@
 						<th >Akcja</th>
 						<th >Akcja</th>
 	</tr>
-	<c:forEach items="${categoryList}" var="category">
+	<c:forEach items="${typeList}" var="category">
 					<tr>
 						<td><b>${category.id}</b></td>
 						<td >${category.name}</td>

@@ -2,13 +2,16 @@ package pl.dmcs.zai.dictionary;
 
 	public enum EnumDictionaryType {
 		
-		CATEGORY("Kategoria"),SUBCATEGORY("Podkategoria"),TYPE("Typ"),
-		PRIORITY("Priorytet"),STATUS("Status");
+		CATEGORY("Kategoria", "categoriesList"),SUBCATEGORY("Podkategoria", "subcategoriesList"),TYPE("Typ", "typesList"),
+		PRIORITY("Priorytet", "prioritiesList"),STATUS("Status", "statusesList");
 		
 		String message;
-
-		private EnumDictionaryType(String message) {
+		
+		String listContext;
+		
+		private EnumDictionaryType(String message, String listContext) {
 			this.message = message;
+			this.listContext = listContext;
 		}
 
 		public String getMessage() {
@@ -19,4 +22,10 @@ package pl.dmcs.zai.dictionary;
 			return this.name();
 		}
 
+		public String getListContext() {
+			return listContext;
+		}
+
+		
+		
 }

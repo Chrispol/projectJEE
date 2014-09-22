@@ -19,17 +19,13 @@ import pl.dmcs.zai.dictionary.EnumDictionaryType;
 @Entity
 @Table(name = "dictionary")
 @NamedQueries({
-	@NamedQuery(name = Dictionary.SELECT_PRIORITY, query = "select a from Dictionary a where a.type = :priority"),
-	@NamedQuery(name = Dictionary.SELECT_CATEGORY, query = "select a from Dictionary a where a.type = :category"),
+	@NamedQuery(name = Dictionary.SELECT_DICTIONARY_BY_TYPE, query = "select a from Dictionary a where a.type = :dictionary"),
 	@NamedQuery(name = Dictionary.SELECT_DICTIONARY_BY_PARENT, query = "select a from Dictionary a where a.parent = :paramParent"),
-	@NamedQuery(name = Dictionary.SELECT_STATUS, query = "select a from Dictionary a where a.type = :status")
 	})
 public class Dictionary {
 
-	public static final String SELECT_PRIORITY = "Dictionary.selectPriority";
-	public static final String SELECT_CATEGORY = "Dictionary.selectCategory";
+	public static final String SELECT_DICTIONARY_BY_TYPE = "Dictionary.selectDictionaryByType";
 	public static final String SELECT_DICTIONARY_BY_PARENT = "Dictionary.selectDictionaryByParent";
-	public static final String SELECT_STATUS = "Dictionary.selectStatus";
 	private static final Logger LOG = LoggerFactory.getLogger(Dictionary.class);
 	
 	@Id

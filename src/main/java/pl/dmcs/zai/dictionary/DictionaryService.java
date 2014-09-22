@@ -44,10 +44,32 @@ public class DictionaryService {
 	public void addDictionaryValue(Dictionary dictionary) {
 		dictionaryRepository.save(dictionary);
 	}
+
+	public void updateDictionaryValue(Dictionary dictionary, Long id) {
+		dictionaryRepository.update(dictionary, id);
+	}
+	
 	
 	public List<Dictionary> searchAllCategories(){
 		return dictionaryRepository.selectCategory();
 	}
+
+	public List<Dictionary> searchAllSubcategories(){
+		return dictionaryRepository.selectSubcategory();
+	}
+
+	public List<Dictionary> searchAllTypes(){
+		return dictionaryRepository.selectType();
+	}
+
+	public List<Dictionary> searchAllPriorities(){
+		return dictionaryRepository.selectPriority();
+	}
+
+	public List<Dictionary> searchAllStatuses(){
+		return dictionaryRepository.selectStatus();
+	}
+	
 	
 	public List<Dictionary> searchDictionariesByParent(Long dictionary){
 		return dictionaryRepository.selectDictionaryByParent(dictionary);

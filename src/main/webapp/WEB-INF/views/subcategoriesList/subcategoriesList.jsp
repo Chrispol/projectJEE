@@ -3,8 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
+	<legend>Podkategorie</legend>
 
-	<legend>Kategorie</legend>
+	
 	<div>
 	<table border="1" style=" border: double; width: 100%">
 	<tr>
@@ -13,7 +14,7 @@
 						<th >Akcja</th>
 						<th >Akcja</th>
 	</tr>
-	<c:forEach items="${categoryList}" var="category">
+	<c:forEach items="${subcategoryList}" var="category">
 					<tr>
 						<td><b>${category.id}</b></td>
 						<td >${category.name}</td>

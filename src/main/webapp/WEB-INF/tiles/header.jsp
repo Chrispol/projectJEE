@@ -15,8 +15,12 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/ex2">Strona główna</a></li>
                 <li><a href='<s:url value="/addnotification"></s:url>'>Zgłoszenie</a></li>
-                <li><a href='<s:url value="/addvalue"></s:url>'>słownikowa</a></li>
+                <li><a href='<s:url value="/addvalue"></s:url>'>Dodaj do słownika</a></li>
                 <li><a href='<s:url value="/categoriesList"></s:url>'>Kategorie</a></li>
+                <li><a href='<s:url value="/subcategoriesList"></s:url>'>Podkategorie</a></li>
+                <li><a href='<s:url value="/typesList"></s:url>'>Typy</a></li>
+                <li><a href='<s:url value="/prioritiesList"></s:url>'>Priorytety</a></li>
+                <li><a href='<s:url value="/statusesList"></s:url>'>Statusy</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
             <li><a href='<s:url value="/signup"></s:url>'>Zarejestruj</a></li>
