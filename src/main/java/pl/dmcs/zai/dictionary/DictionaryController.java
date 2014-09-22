@@ -195,11 +195,17 @@ public class DictionaryController {
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public @ResponseBody
 	List<Dictionary> categories() {
-		log.info("finding all categories ");
+		log.info("finding all categories");
 		return dictionaryService.searchAllCategories();
 	}
 	
-
+	@RequestMapping(value = "/types", method = RequestMethod.GET)
+	public @ResponseBody
+	List<Dictionary> types(
+			@RequestParam(value = "subcategoryId", required = true) Long id) {
+		log.info("finding types for subcategory " + id);
+		return dictionaryService.searchDictionariesByParent(id);
+	}
 	
 	
 

@@ -4,7 +4,7 @@
 	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	<definition name="addnotification" extends="default">
-		<put-attribute name="body" value="/WEB-INF/views/addnotification/addnotification.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/addnotification/addNotification.jsp" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
 		<put-list-attribute name="styles">

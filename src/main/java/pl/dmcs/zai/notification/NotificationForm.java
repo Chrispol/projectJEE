@@ -1,9 +1,15 @@
 package pl.dmcs.zai.notification;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import pl.dmcs.zai.domain.Notification;
 import pl.dmcs.zai.domain.Usufructuary;
 
 public class NotificationForm {
 
+	private static final Logger LOG = LoggerFactory.getLogger(NotificationForm.class);
+	
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 
 	private String shortDescription;
@@ -13,7 +19,17 @@ public class NotificationForm {
 	private Long type;
 	private Long status;
 	private Long priority;
-	private Usufructuary user;
+	private Long user;
+	
+	
+	public Notification createNotification() {
+		LOG.debug("createNotification in NotificationForm:");
+    	return new Notification(getShortDescription(), getName(), getCategory(),
+    			getSubcategory(), getType(), getStatus(),
+    			getPriority(), new Usufructuary(getUser()));
+	}
+
+	
 	
     public String getShortDescription() {
 		return shortDescription;
@@ -71,11 +87,11 @@ public class NotificationForm {
 		this.priority = priority;
 	}
 
-	public Usufructuary getUser() {
+	public Long getUser() {
 		return user;
 	}
 
-	public void setUser(Usufructuary user) {
+	public void setUser(Long user) {
 		this.user = user;
 	}
 

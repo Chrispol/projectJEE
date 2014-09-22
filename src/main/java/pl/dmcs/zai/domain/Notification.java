@@ -74,7 +74,7 @@ public class Notification {
 
 	public Notification(String shortDescription, String name, Long category_id,
 			Long subcategory_id, Long type_id, Long status_id,
-			Long priority_id) {
+			Long priority_id, Usufructuary user) {
 		super();
 		this.shortDescription = shortDescription;
 		this.name = name;
@@ -83,7 +83,7 @@ public class Notification {
 		this.type_id = type_id;
 		this.status_id = status_id;
 		this.priority_id = priority_id;
-		
+		this.user = user;		
 	}
 
 

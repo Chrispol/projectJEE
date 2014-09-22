@@ -66,7 +66,13 @@ public class Usufructuary implements java.io.Serializable{
     protected Usufructuary() {
 
 	}
-	
+
+    public Usufructuary(Long id) {
+    	super();
+    	this.id=id;
+	}
+    
+    
 	public Usufructuary(String email, String password, String name,String surname,String phoneNumber,String typeUser) {
 		this.email = email;
 		this.password = password;
@@ -174,4 +180,15 @@ public class Usufructuary implements java.io.Serializable{
 		this.commentList = commentList;
 	}
 
+	@Override
+	public String toString() {
+		return "Usufructuary [id=" + id + ", Label=" + Label + ", email="
+				+ email + ", password=" + password + ", name=" + name
+				+ ", surname=" + surname + ", phoneNumber=" + phoneNumber
+				+ ", typeUser=" + typeUser + ", notificationList="
+				+ notificationList + ", commentList=" + commentList + "]";
+	}
+
+	
+	
 }

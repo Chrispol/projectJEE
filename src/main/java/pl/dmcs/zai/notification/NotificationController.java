@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.dmcs.zai.dao.UsufructuaryRepository;
 import pl.dmcs.zai.dictionary.DictionaryRepository;
 import pl.dmcs.zai.domain.Dictionary;
+import pl.dmcs.zai.domain.Notification;
 import pl.dmcs.zai.domain.Usufructuary;
 import pl.dmcs.zai.support.web.MessageHelper;
 
@@ -30,6 +31,10 @@ public class NotificationController {
 	
 	@Autowired
 	private DictionaryRepository dictionaryRepository;
+
+	@Autowired
+	private NotificationService notificationService;
+	
 	
 	@ModelAttribute("selectallusers")
 	public List<Usufructuary> selectallusers() {
@@ -64,16 +69,20 @@ public class NotificationController {
 	}
 	
 	@RequestMapping(value = "addnotification", method = RequestMethod.POST)
-	public String signup(@Valid @ModelAttribute NotificationForm notificationForm, Errors errors, RedirectAttributes ra) {
+	public String addnotification(@Valid @ModelAttribute NotificationForm notificationForm, Errors errors, RedirectAttributes ra) {
 		if (errors.hasErrors()) {
+			log.info(errors.toString());			
 			return null;
 		}
+		log.info("addnotification - user"+ notificationForm.getUser());
+		Notification notification = notificationForm.createNotification();
+		notificationService.addNotification(notification);
 		
-
-        MessageHelper.addSuccessAttribute(ra, "Gratulujemy! Konto zostało założone pomyślnie.");
+        MessageHelper.addSuccessAttribute(ra, "Gratulujemy! Dodano zgøoszenie.");
 		
-		return "redirect:/";
+		return "redirect:/addnotification";
 	}
+	
 
 	
 }
