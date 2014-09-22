@@ -81,5 +81,16 @@ private static final Logger LOG = LoggerFactory.getLogger(DictionaryRepository.c
 			return null;
 		}	
 	}
+
+	public Dictionary findById(Long id) {
+		
+		try {
+			LOG.debug("select dictionary by id:"+id);
+			return entityManager.find(Dictionary.class, id);
+		} catch (PersistenceException e) {
+			return null;
+		}	
+	}
+
 	
 }

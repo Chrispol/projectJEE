@@ -60,6 +60,14 @@ public class Dictionary {
 		this.parent = parent;
 	}
 
+	public Dictionary(Long id, String name, EnumDictionaryType type, Long parent) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.parent = parent;
+	}
+	
 	protected Dictionary(){
 		
 	}

@@ -38,6 +38,13 @@ public class DictionaryController {
 	public DictionaryForm addvalue() {
 		return new DictionaryForm();
 	}
+
+	
+	@RequestMapping(value = "categoriesList")	
+	public DictionaryForm categoriesList() {
+		return new DictionaryForm();
+	}
+	
 	
 	@ModelAttribute("dictionaryType")
     public List<EnumDictionaryType> dictionaryType()
@@ -47,12 +54,14 @@ public class DictionaryController {
         return Arrays.asList(EnumDictionaryType.values());
     }
 
-/*	@ModelAttribute("categoryList")
+	@ModelAttribute("categoryList")
     public List<Dictionary> categoryList()
     {
 		return dictionaryService.searchAllCategories();
     }
-*/
+
+	
+	
 /*	@ModelAttribute("subcategories")
     public List<Dictionary> subcategoryList()
     {
@@ -74,6 +83,27 @@ public class DictionaryController {
         MessageHelper.addSuccessAttribute(ra, "Dodano wartośc słownikową.");
 		return "redirect:/";
 	}
+
+
+	@RequestMapping(value = "editvalue", method = RequestMethod.POST)
+	public String editvalue(@Valid @ModelAttribute DictionaryForm dictionaryForm, Errors errors, RedirectAttributes ra) {
+		if (errors.hasErrors()) {
+			log.info(errors.toString());
+			return null;
+		}
+		dictionaryService.addDictionaryValue(dictionaryForm.createDictionary());
+        MessageHelper.addSuccessAttribute(ra, "Dodano wartośc słownikową.");
+		return "redirect:/categoriesList";
+	}
+	
+	
+	@RequestMapping(value = "/delvalue", method = RequestMethod.POST)
+	public	String delValue(@RequestParam(value = "categoryId", required = true) Long categoryId) {
+		log.info("del category for categoryId" + categoryId);
+		return "redirect:/categoriesList";
+	}
+	
+	
 	
 	@RequestMapping(value = "/subcategories", method = RequestMethod.GET)
 	public @ResponseBody
@@ -83,13 +113,29 @@ public class DictionaryController {
 		return dictionaryService.searchDictionariesByParent(category);
 	}
 
+
+	@RequestMapping(value = "/editvalue", method = RequestMethod.GET)
+	public 	DictionaryForm editvalue(@RequestParam(value = "id", required = true) Long id) {
+		log.info("editvalue for category " + id);
+		Dictionary dict = dictionaryService.findById(id);
+		DictionaryForm dictForm = new DictionaryForm();
+		dictForm.setId(dict.getId());
+		dictForm.setName(dict.getName());
+		dictForm.setDictionaryType(dict.getType());
+		
+		return dictForm;
+		
+	}
+	
+	
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Dictionary> categoriesList() {
+	List<Dictionary> categories() {
 		log.info("finding all categories ");
 		return dictionaryService.searchAllCategories();
 	}
 	
+
 	
 	
 

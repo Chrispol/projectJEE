@@ -53,5 +53,9 @@ public class DictionaryService {
 		return dictionaryRepository.selectDictionaryByParent(dictionary);
 	}
 	
+	public Dictionary findById(Long id){
+		return dictionaryRepository.findById(id);
+	}
+	
 }
 

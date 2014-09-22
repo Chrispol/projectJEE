@@ -12,7 +12,9 @@ public class DictionaryForm {
 	
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 
-    @NotBlank(message = DictionaryForm.NOT_BLANK_MESSAGE)
+	private Long id;
+
+	@NotBlank(message = DictionaryForm.NOT_BLANK_MESSAGE)
 	private String name;
     
     private EnumDictionaryType dictionaryType;
@@ -87,6 +89,18 @@ public class DictionaryForm {
 
 	public void setSubcategory(Long subcategory) {
 		this.subcategory = subcategory;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
