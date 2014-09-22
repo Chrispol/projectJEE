@@ -1,7 +1,10 @@
 package pl.dmcs.zai.notification;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +27,16 @@ public class NotificationRepository {
 		return notification;
 	}
 	
+public List<Notification> selectAllNotifications() {
+		
+		try {
+			log.debug("selectAllNotifications");
+			return entityManager.createNamedQuery(Notification.SELECT_NOTIFICATIONS, Notification.class)
+					.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}	
+	}	
 
 	
 }

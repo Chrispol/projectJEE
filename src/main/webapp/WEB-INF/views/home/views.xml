@@ -5,8 +5,18 @@
 <tiles-definitions>
 	<definition name="homeNotSignedIn" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/home/homeNotSignedIn.jsp"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+		<put-list-attribute name="styles">
+			<add-attribute value="signin.css" />
+		</put-list-attribute>		
 	</definition>
 	<definition name="homeSignedIn" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/home/homeSignedIn.jsp"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+		<put-list-attribute name="styles">
+			<add-attribute value="signin.css" />
+		</put-list-attribute>
 	</definition>	
 </tiles-definitions>

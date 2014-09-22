@@ -9,17 +9,33 @@
         Witamy w serwisie.
     </h2> 
 </div>
-<%-- <fieldset>
-         <div class="form-group">
-            <div class="col-lg-10">
-            <label for="name" class="col-lg-2 control-label">Nazwa</label>
-                <form:label path="name" class="form-control" id="name" />
-                <form:errors path="name" element="span" class="help-block"/>
-            </div>
-        </div>      
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-default">Dodaj</button>
-            </div>
-        </div>
-    </fieldset> --%>
+<html>	
+	<div>
+	<table border="1" style=" border: double; width: 100%">
+	<tr>
+		<th>Id</th>
+		<th>Nazwa</th>
+		<th>Opis</th>
+		<th>Kategoria</th>
+		<th>Podkategoria</th>
+		<th>Typ</th>
+		<th>Status</th>
+		<th>Priorytet</th>
+		<th>Uzytkownik</th>
+	</tr>
+	<c:forEach items="${notificationList}" var="notification">
+					<tr   >
+						<td>${notification.id}</td>
+						<td>${notification.name}</td>
+						<td>${notification.shortDescription}</td>
+						<td>${notification.category_id.name}</td>
+						<td>${notification.subcategory_id.name}</td>
+						<td>${notification.type_id.name}</td>
+						<td>${notification.status_id.name}</td>
+						<td>${notification.priority_id.name}</td>
+						<td>${notification.user.label}</td>
+					</tr>
+	</c:forEach>
+	</table>
+	</div>
+</html>

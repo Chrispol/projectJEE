@@ -3,6 +3,7 @@ package pl.dmcs.zai.notification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import pl.dmcs.zai.domain.Dictionary;
 import pl.dmcs.zai.domain.Notification;
 import pl.dmcs.zai.domain.Usufructuary;
 
@@ -24,9 +25,9 @@ public class NotificationForm {
 	
 	public Notification createNotification() {
 		LOG.debug("createNotification in NotificationForm:");
-    	return new Notification(getShortDescription(), getName(), getCategory(),
-    			getSubcategory(), getType(), getStatus(),
-    			getPriority(), new Usufructuary(getUser()));
+    	return new Notification(getShortDescription(), getName(), new Dictionary(getCategory()),
+    			new Dictionary(getSubcategory()), new Dictionary(getType()), new Dictionary(getStatus()),
+    			new Dictionary(getPriority()), new Usufructuary(getUser()));
 	}
 
 	

@@ -1,5 +1,7 @@
 package pl.dmcs.zai.notification;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.dmcs.zai.domain.Notification;
@@ -21,5 +23,11 @@ public class NotificationService {
 	public void addNotification(Notification notification) {
 		notificationRepository.save(notification);
 	}
+	
+	public List<Notification> allNotification() {
+		
+		return notificationRepository.selectAllNotifications();	
+	}
+	
 
 }

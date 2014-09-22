@@ -67,7 +67,11 @@ public class Dictionary {
 	protected Dictionary(){
 		
 	}
-	
+
+	public Dictionary(Long id){
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}

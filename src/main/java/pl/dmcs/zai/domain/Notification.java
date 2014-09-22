@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,14 +23,15 @@ import org.slf4j.LoggerFactory;
 
 @Entity
 @Table(name = "notification")
-/*@NamedQueries({
-@NamedQuery(name = Notification.SELECT_PRIORITY, query = "select a from Usufructuary a where a.email = :email"),
-@NamedQuery(name = Notification.SELECT_CATEGORY, query = "select a from Usufructuary a")
-})*/
+@NamedQueries({
+@NamedQuery(name = Notification.SELECT_NOTIFICATIONS, query = "select a from Notification a")
+})
 public class Notification {
 
 	/*public static final String FIND_BY_EMAIL = "Notification.findByEmail";
 	public static final String SELECT_ALL_USERS = "Notification.SelectAllUsers";*/
+
+	public static final String SELECT_NOTIFICATIONS = "Notification.selectAllNotification";
 	private static final Logger LOG = LoggerFactory.getLogger(Notification.class);
 		
 	@Id
@@ -44,38 +46,40 @@ public class Notification {
 	@Column(length = 120)
 	private String name;
 	
-	@Column(nullable = false)
-	@JoinColumn/*(name = "category_id")*/
-	private Long category_id;
-	
-	@Column(nullable = false)
-	@JoinColumn(name = "subcategory_id")
-	private Long subcategory_id;
-	
-	@Column(nullable = false)
-	@JoinColumn(name = "type_id")
-	private Long type_id;
-	
-	@Column(nullable = false)
-	@JoinColumn(name = "status_id")
-	private Long status_id;
-	
-	@Column(nullable = false)
-	@JoinColumn(name = "priority_id")
-	private Long priority_id;
+	@ManyToOne
+	@JoinColumn(name = "category_id", nullable = false)
+	private Dictionary category_id;
 	
 	@ManyToOne
+	@JoinColumn(name = "subcategory_id", nullable = false)
+	private Dictionary subcategory_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "type_id", nullable = false)
+	private Dictionary type_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "status_id", nullable = false)
+	private Dictionary status_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "priority_id", nullable = false)
+	private Dictionary priority_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
 	Usufructuary user;
 	
 	protected Notification(){
-		
+		super();
 	}
 	
-
-	public Notification(String shortDescription, String name, Long category_id,
-			Long subcategory_id, Long type_id, Long status_id,
-			Long priority_id, Usufructuary user) {
+	public Notification(String shortDescription, String name,
+			Dictionary category_id, Dictionary subcategory_id,
+			Dictionary type_id, Dictionary status_id, Dictionary priority_id,
+			Usufructuary user) {
 		super();
+
 		this.shortDescription = shortDescription;
 		this.name = name;
 		this.category_id = category_id;
@@ -83,8 +87,10 @@ public class Notification {
 		this.type_id = type_id;
 		this.status_id = status_id;
 		this.priority_id = priority_id;
-		this.user = user;		
+		this.user = user;
 	}
+
+
 
 
 	public String getName() {
@@ -116,47 +122,7 @@ public class Notification {
 	}
 	
 	
-	public Long getCategory_id() {
-		return category_id;
-	}
-
-	public void setCategory_id(Long category_id) {
-		this.category_id = category_id;
-	}
-
-	public Long getSubcategory_id() {
-		return subcategory_id;
-	}
-
-	public void setSubcategory_id(Long subcategory_id) {
-		this.subcategory_id = subcategory_id;
-	}
-
-	public Long getType_id() {
-		return type_id;
-	}
-
-	public void setType_id(Long type_id) {
-		this.type_id = type_id;
-	}
-
-	public Long getStatus_id() {
-		return status_id;
-	}
-
-	public void setStatus_id(Long status_id) {
-		this.status_id = status_id;
-	}
-
-	public Long getPriority_id() {
-		return priority_id;
-	}
-
-	public void setPriority_id(Long priority_id) {
-		this.priority_id = priority_id;
-	}
-
-	@OneToMany(mappedBy = "notification")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "notification", fetch = FetchType.LAZY)
 	private List<Comment> commentList = new ArrayList<Comment>();
 
 	public List<Comment> getCommentList() {
@@ -166,5 +132,51 @@ public class Notification {
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
+
+	public Dictionary getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(Dictionary category_id) {
+		this.category_id = category_id;
+	}
+
+	public Dictionary getSubcategory_id() {
+		return subcategory_id;
+	}
+
+	public void setSubcategory_id(Dictionary subcategory_id) {
+		this.subcategory_id = subcategory_id;
+	}
+
+	public Dictionary getType_id() {
+		return type_id;
+	}
+
+	public void setType_id(Dictionary type_id) {
+		this.type_id = type_id;
+	}
+
+	public Dictionary getStatus_id() {
+		return status_id;
+	}
+
+	public void setStatus_id(Dictionary status_id) {
+		this.status_id = status_id;
+	}
+
+	public Dictionary getPriority_id() {
+		return priority_id;
+	}
+
+	public void setPriority_id(Dictionary priority_id) {
+		this.priority_id = priority_id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	
 }
