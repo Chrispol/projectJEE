@@ -47,7 +47,7 @@
 </c:forEach>
 
 <img src="${kotResource}" alt="${kotResource}" />
-	Hello world!1! <br/>
+	Serwis!1! <br/>
 	<p>Param p: ${param.p}</p>
 	<p>Attribute a: ${a.getClass().declaredMethods}</p>
 	${b.policz(c,d) }

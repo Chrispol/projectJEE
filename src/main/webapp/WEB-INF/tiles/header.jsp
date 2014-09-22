@@ -18,6 +18,7 @@
                 <li><a href='<s:url value="/addvalue"></s:url>'>Wartość słownikowa</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
+            <li><a href='<s:url value="/signup"></s:url>'>Zarejestruj</a></li>
                 <security:authorize access="!isAuthenticated()">
                     <li><a href='<s:url value="/signin"></s:url>'>Zaloguj</a></li>
                 </security:authorize>
