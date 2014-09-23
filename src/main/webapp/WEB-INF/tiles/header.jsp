@@ -14,7 +14,9 @@
         <div class="nav-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/ex2">Strona główna</a></li>
-                <li><a href='<s:url value="/addnotification"></s:url>'>Zgłoszenie</a></li>
+                <li><a href='<s:url value="/homeSignedIn"></s:url>'>Moje</a></li>
+                <li><a href='<s:url value="/homeNotSignedIn"></s:url>'>Wszystkie</a></li>
+                <li><a href='<s:url value="/addnotification"></s:url>'>Dodaj</a></li>
                 <li><a href='<s:url value="/addvalue"></s:url>'>Dodaj do słownika</a></li>
                 <li><a href='<s:url value="/categoriesList"></s:url>'>Kategorie</a></li>
                 <li><a href='<s:url value="/subcategoriesList"></s:url>'>Podkategorie</a></li>
