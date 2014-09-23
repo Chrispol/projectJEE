@@ -8,15 +8,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TemporalType;
+import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "comment")
+@NamedQueries({
+	@NamedQuery(name = Comment.SELECT_BY_NOTIFICATION, query = "select c from Comment c where c.notification = :notification"),
+	})
 public class Comment {
 
-	public static final String FIND_BY_ID = "Comment.findById";
+	
+	public static final String SELECT_BY_NOTIFICATION = "Comment.selectByNotification";
 	
 	@Id
 	@SequenceGenerator(name = "comment_SEQUENCE", sequenceName = "comment_seq")
@@ -27,6 +34,9 @@ public class Comment {
 	@Column(length = 150)
 	private String content;
 	
+	/** Data wpływu/wyjścia interakcji */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DATE", nullable = false)
 	private Date date;
 	
 	@ManyToOne
@@ -39,10 +49,11 @@ public class Comment {
 
 	public Comment() { }
 
-	public Comment(String content, Date date) {
+	public Comment(String content, Date date, Notification notification) {
 		super();
 		this.content = content;
 		this.date = date;
+		this.notification = notification;
 	}
 
 	public String getContent() {

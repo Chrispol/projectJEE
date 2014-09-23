@@ -24,7 +24,8 @@ import org.slf4j.LoggerFactory;
 @Entity
 @Table(name = "notification")
 @NamedQueries({
-@NamedQuery(name = Notification.SELECT_NOTIFICATIONS, query = "select a from Notification a")
+@NamedQuery(name = Notification.SELECT_NOTIFICATIONS, query = "select a from Notification a"),
+@NamedQuery(name = Notification.SELECT_NOTIFICATIONS_BY_USER, query = "select a from Notification a where a.user=:user")
 })
 public class Notification {
 
@@ -32,6 +33,7 @@ public class Notification {
 	public static final String SELECT_ALL_USERS = "Notification.SelectAllUsers";*/
 
 	public static final String SELECT_NOTIFICATIONS = "Notification.selectAllNotification";
+	public static final String SELECT_NOTIFICATIONS_BY_USER = "Notification.selectNotificationByUser";
 	private static final Logger LOG = LoggerFactory.getLogger(Notification.class);
 		
 	@Id
@@ -73,6 +75,13 @@ public class Notification {
 	protected Notification(){
 		super();
 	}
+
+	
+	public Notification(Long id){
+		super();
+		this.id=id;
+	}
+
 	
 	public Notification(String shortDescription, String name,
 			Dictionary category_id, Dictionary subcategory_id,

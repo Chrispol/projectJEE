@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.dmcs.zai.domain.Dictionary;
 import pl.dmcs.zai.domain.Notification;
+import pl.dmcs.zai.domain.Usufructuary;
 
 public class NotificationService {
 	
@@ -30,6 +31,12 @@ public class NotificationService {
 		return notificationRepository.selectAllNotifications();	
 	}
 
+	public List<Notification> selectNotificationsByUser( Usufructuary user) {
+		return notificationRepository.selectNotificationsByUser(user);
+	}
+
+	
+	
 	public List<Notification> selectFilteredNotifications(Notification notification) {
 		
 		return notificationRepository.selectFilteredNotifications(notification);	

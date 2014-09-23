@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import pl.dmcs.zai.domain.Comment;
 import pl.dmcs.zai.domain.Dictionary;
 import pl.dmcs.zai.domain.Notification;
 import pl.dmcs.zai.domain.Usufructuary;
@@ -32,6 +33,8 @@ public class NotificationForm {
 
 	private Notification notificationDetails;
 
+	private List<Comment> commentList;
+	
 	
 	private List<Notification> searchNotifications = new ArrayList<Notification>();
 	
@@ -186,6 +189,20 @@ public class NotificationForm {
 
 
 
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+
+
+
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "NotificationForm [id=" + id + ", shortDescription="
@@ -194,13 +211,11 @@ public class NotificationForm {
 				+ ", status=" + status + ", priority=" + priority + ", user="
 				+ user + ", oldType=" + oldType + ", oldSubcategory="
 				+ oldSubcategory + ", notificationDetails="
-				+ notificationDetails + ", searchNotifications="
-				+ searchNotifications + "]";
+				+ notificationDetails + ", commentList=" + commentList
+				+ ", searchNotifications=" + searchNotifications + "]";
 	}
 
 
 
-
-	
 	
 }

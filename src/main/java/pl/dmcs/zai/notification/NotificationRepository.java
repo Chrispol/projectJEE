@@ -44,6 +44,18 @@ public List<Notification> selectAllNotifications() {
 		}	
 	}	
 
+public List<Notification> selectNotificationsByUser( Usufructuary user) {
+	
+	try {
+		log.debug("selectAllNotifications");
+		return entityManager.createNamedQuery(Notification.SELECT_NOTIFICATIONS_BY_USER, Notification.class)
+				.setParameter("user", user)
+				.getResultList();
+	} catch (PersistenceException e) {
+		return null;
+	}	
+}	
+
 
 public Notification findById(Long id) {
 	

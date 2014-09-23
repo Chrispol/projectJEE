@@ -26,6 +26,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 		<security:intercept-url pattern="/categories" access="permitAll" />
 		<security:intercept-url pattern="/types" access="permitAll" />
 		<security:intercept-url pattern="/shownotification" access="permitAll" />
+		<security:intercept-url pattern="/addcomment" access="permitAll" />
 		<security:intercept-url pattern="/signin" access="permitAll" />
 		<security:intercept-url pattern="/signup" access="permitAll" />
 		<security:intercept-url pattern="/homeNotSignedIn" access="permitAll" />
@@ -42,4 +43,6 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	<bean id="dictionaryService" class="pl.dmcs.zai.dictionary.DictionaryService"></bean>
 	<bean id="notificationService" class="pl.dmcs.zai.notification.NotificationService"></bean>
 	<bean id="notificationRepository" class="pl.dmcs.zai.notification.NotificationRepository"></bean>
+	<bean id="commentService" class="pl.dmcs.zai.comment.CommentService"></bean>
+	<bean id="commentRepository" class="pl.dmcs.zai.comment.CommentRepository"></bean>
 </beans>

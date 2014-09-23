@@ -9,11 +9,15 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pl.dmcs.zai.comment.CommentForm;
+import pl.dmcs.zai.comment.CommentService;
 import pl.dmcs.zai.dao.UsufructuaryRepository;
 import pl.dmcs.zai.dictionary.DictionaryForm;
 import pl.dmcs.zai.dictionary.DictionaryRepository;
@@ -37,6 +41,8 @@ public class HomeController {
 	@Autowired
 	private DictionaryService dictionaryService;
 
+	@Autowired
+	private CommentService commentService;
 	
 	@Autowired
 	private UsufructuaryRepository usufructuaryRepository;
@@ -56,6 +62,23 @@ public class HomeController {
 		return form;
 	}
 
+	@RequestMapping(value = "/homeSignedIn", method = RequestMethod.GET)
+	public NotificationForm homeSignedIn() {
+		Usufructuary user;
+		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof UserDetails){
+			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			user = usufructuaryRepository.findByEmail(userDetails.getUsername());
+		}else{
+			user = new Usufructuary(-1l);
+		}
+
+		List<Notification> searchNotifications = notificationService.selectNotificationsByUser(user);
+		NotificationForm form = new NotificationForm();
+		form.setSearchNotifications(searchNotifications);
+		log.info("size:"+form.getSearchNotifications().size());
+		return form;
+	}
+	
 
 	@RequestMapping(value = "/homeNotSignedIn", method = RequestMethod.POST)
 	public NotificationForm homeNotSignedInPost(@Valid @ModelAttribute NotificationForm notificationForm, Errors errors, RedirectAttributes ra) {
@@ -115,6 +138,7 @@ public class HomeController {
 	public 	NotificationForm shownotification(@RequestParam(value = "id", required = true) Long id) {
 		log.info("editvalue for category " + id);
 		Notification notyf = notificationService.findById(id);
+//		notyf.setCommentList(commentService.selectCommentByNotification(new Notification(notyf.getId())));
 		log.info("editvalue- get - notyf:"+notyf);
 		NotificationForm dictForm = new NotificationForm();
 /*		dictForm.setId(notyf.getId());
@@ -128,12 +152,12 @@ public class HomeController {
 		dictForm.setShortDescription(notyf.getShortDescription());
 */
 		dictForm.setNotificationDetails(notyf);
+		dictForm.setCommentList(commentService.selectCommentByNotification(new Notification(notyf.getId())));
 		
 		log.info("editvalue- get - dictForm:"+dictForm);
 
 		return dictForm;
 		
 	}
-
 	
 }

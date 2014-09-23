@@ -3,14 +3,15 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
+
 <form:form class="form-narrow form-horizontal" method="post" modelAttribute="commentForm">
 
     <fieldset>
+     <legend>Dodaj komentarz</legend>     
              <div class="form-group">
             <label for="notificationId" class="col-lg-2 control-label">Id zgloszenia</label>
             <div class="col-lg-10">
-                <form:input path="notification.id" class="form-control" id="notificationId" maxlength="120"/>
-                <form:errors path="name" element="span" class="help-block"/>
+                <form:input path="notificationId" class="form-control" id="notificationId" maxlength="120"/>
             </div>
         </div>
     

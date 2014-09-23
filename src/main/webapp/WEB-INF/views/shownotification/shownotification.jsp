@@ -107,10 +107,15 @@ $(document).ready(
         <legend>Szczególy zgloszenia</legend>
         <form:errors path="" element="p" class="text-error"/>
          <div class="form-group">
+            <label for="notificationId" class="col-lg-2 control-label">Id</label>
+            <div class="col-lg-10">
+                <form:input path="notificationDetails.id" class="form-control" id="notificationId" maxlength="120"/>
+            </div>
+        </div>
+         <div class="form-group">
             <label for="name" class="col-lg-2 control-label">Nazwa</label>
             <div class="col-lg-10">
                 <form:input path="notificationDetails.name" class="form-control" id="name" maxlength="120"/>
-                <form:errors path="name" element="span" class="help-block"/>
             </div>
         </div>
           <div class="form-group">
@@ -168,23 +173,21 @@ $(document).ready(
         <form:input path="oldType"  style="visibility:hidden" id="oldType" maxlength="120"/>
         <form:input path="oldSubcategory" style="visibility:hidden" id="oldSubcategory" maxlength="120"/>
         
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-default">Szukaj</button>
-            </div>
-        </div>
+        <legend>Lista komentarzy</legend>        
 	<div class="form-group">
 	<table border="1" style=" border: double; width: 100%">
 	<tr>
 		<th>Id</th>
 		<th>Komentarz</th>
+		<th>Data utworzenia</th>
 		<th>Uzytkownik</th>
 	</tr>
-	<c:forEach items="${notificationForm.notificationDetails.commentList}"  var="comment">
+	<c:forEach items="${notificationForm.commentList}"  var="comment">
 					<tr>
 						<td>${comment.id}</td>
-						<td>${notification.content}</td>
-						<td>${notification.user.label}</td>
+						<td>${comment.content}</td>
+						<td>${comment.date}</td>
+						<td>${comment.user.label}</td>
 					</tr>
 	</c:forEach>
 	</table>
