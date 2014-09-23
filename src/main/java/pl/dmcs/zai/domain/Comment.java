@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -25,12 +26,15 @@ public class Comment {
 	
 	@Column(length = 150)
 	private String content;
+	
 	private Date date;
 	
 	@ManyToOne
+	@JoinColumn(name = "notification_id", nullable = false)
 	private Notification notification;
 	
 	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
 	Usufructuary user;
 
 	public Comment() { }

@@ -104,19 +104,19 @@ $(document).ready(
 <form:form class="form-horizontal" method="post" modelAttribute="notificationForm">
 
     <fieldset >
-        <legend>Wyszukiwarka zgloszen</legend>
+        <legend>Szczególy zgloszenia</legend>
         <form:errors path="" element="p" class="text-error"/>
          <div class="form-group">
             <label for="name" class="col-lg-2 control-label">Nazwa</label>
             <div class="col-lg-10">
-                <form:input path="name" class="form-control" id="name" maxlength="120"/>
+                <form:input path="notificationDetails.name" class="form-control" id="name" maxlength="120"/>
                 <form:errors path="name" element="span" class="help-block"/>
             </div>
         </div>
           <div class="form-group">
             <label for="priority" class="col-lg-2 control-label">Priorytet</label>
             <div class="col-lg-10">
-				<form:select path="priority" >
+				<form:select path="notificationDetails.priority_id" >
 				<form:option value="-1">Wybierz priorytet</form:option>
 				<form:options items="${selectpriority}" itemValue="id" itemLabel="name"/>
 				</form:select>
@@ -125,7 +125,7 @@ $(document).ready(
          <div class="form-group">
             <label for="category" class="col-lg-2 control-label">Kategoria</label>
             <div class="col-lg-10">
-				<form:select id="categories"  path="category">
+				<form:select id="categories"  path="notificationDetails.category_id">
 				<form:option value="-1">Wybierz kategorie</form:option>
 				<form:options items="${selectcategory}" itemValue="id" itemLabel="name"/>
 				</form:select>
@@ -134,7 +134,7 @@ $(document).ready(
          <div class="form-group">
             <label for="subcategory" class="col-lg-2 control-label">Podkategria</label>
             <div class="col-lg-10">
-				<form:select id="subcategories" path="subcategory">
+				<form:select id="subcategories" path="notificationDetails.subcategory_id">
 				<form:option value="-1">Wybierz podkategorie</form:option>
 				</form:select>
             </div>
@@ -142,7 +142,7 @@ $(document).ready(
       	<div class="form-group">
             <label for="type" class="col-lg-2 control-label">Typ</label>
             <div class="col-lg-10">
-				<form:select id="types" path="type">
+				<form:select id="types" path="notificationDetails.type_id">
 				<form:option value="-1">Wybierz typ</form:option>
 				</form:select>
             </div>
@@ -150,7 +150,7 @@ $(document).ready(
          <div class="form-group">
             <label for="status" class="col-lg-2 control-label">Status</label>
             <div class="col-lg-10">
-				<form:select path="status">
+				<form:select path="notificationDetails.status_id">
 				<form:option value="-1">Wybierz status</form:option>
 				<form:options items="${selectstatus}" itemValue="id" itemLabel="name"/>
 				</form:select>
@@ -159,7 +159,7 @@ $(document).ready(
          <div class="form-group">
             <label for="user" class="col-lg-2 control-label">Użytkownik</label>
             <div class="col-lg-10">
-				<form:select path="user">
+				<form:select path="notificationDetails.user">
 				<form:option value="-1">Wybierz uzytkownika</form:option>
 				<form:options items="${selectallusers}" itemValue="id" itemLabel="label"/>
 				</form:select>
@@ -177,33 +177,14 @@ $(document).ready(
 	<table border="1" style=" border: double; width: 100%">
 	<tr>
 		<th>Id</th>
-		<th>Nazwa</th>
-		<th>Opis</th>
-		<th>Kategoria</th>
-		<th>Podkategoria</th>
-		<th>Typ</th>
-		<th>Status</th>
-		<th>Priorytet</th>
+		<th>Komentarz</th>
 		<th>Uzytkownik</th>
-		<th width="15%">Akcja</th>
 	</tr>
-	<c:forEach items="${notificationForm.searchNotifications}"  var="notification">
-					<tr   >
-						<td>${notification.id}</td>
-						<td>${notification.name}</td>
-						<td>${notification.shortDescription}</td>
-						<td>${notification.category_id.name}</td>
-						<td>${notification.subcategory_id.name}</td>
-						<td>${notification.type_id.name}</td>
-						<td>${notification.status_id.name}</td>
-						<td>${notification.priority_id.name}</td>
+	<c:forEach items="${notificationForm.notificationDetails.commentList}"  var="comment">
+					<tr>
+						<td>${comment.id}</td>
+						<td>${notification.content}</td>
 						<td>${notification.user.label}</td>
-						<td width="15%">
-							<form action="shownotification" method="get">
-								<input type="submit" value="Szególy" >						
-								<input style="visibility:hidden" type="text" name="id"  value ="${notification.id}" >
-							</form>												
-						</td>
 					</tr>
 	</c:forEach>
 	</table>

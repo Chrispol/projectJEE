@@ -3,8 +3,10 @@ package pl.dmcs.zai.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -158,7 +160,7 @@ public class Usufructuary implements java.io.Serializable{
 		return id;
 	}
 
-	@OneToMany(mappedBy = "user")
+/*	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Notification> notificationList = new ArrayList<Notification>();
 
 	public List<Notification> getNotificationList() {
@@ -168,8 +170,8 @@ public class Usufructuary implements java.io.Serializable{
 	public void setNotificationList(List<Notification> notificationList) {
 		this.notificationList = notificationList;
 	}
-	
-	@OneToMany(mappedBy = "user")
+*/	
+/*	@OneToMany(mappedBy = "user")
 	private List<Comment> commentList = new ArrayList<Comment>();
 
 	public List<Comment> getCommentList() {
@@ -179,14 +181,13 @@ public class Usufructuary implements java.io.Serializable{
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
-
+*/
 	@Override
 	public String toString() {
 		return "Usufructuary [id=" + id + ", Label=" + Label + ", email="
 				+ email + ", password=" + password + ", name=" + name
 				+ ", surname=" + surname + ", phoneNumber=" + phoneNumber
-				+ ", typeUser=" + typeUser + ", notificationList="
-				+ notificationList + ", commentList=" + commentList + "]";
+				+ ", typeUser=" + typeUser  + "]";
 	}
 
 	

@@ -1,5 +1,8 @@
 package pl.dmcs.zai.notification;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +16,7 @@ public class NotificationForm {
 	
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 
+	private Long id;
 	private String shortDescription;
 	private String name;
 	private Long category;
@@ -21,6 +25,15 @@ public class NotificationForm {
 	private Long status;
 	private Long priority;
 	private Long user;
+
+	
+	private Long oldType;
+	private Long oldSubcategory;
+
+	private Notification notificationDetails;
+
+	
+	private List<Notification> searchNotifications = new ArrayList<Notification>();
 	
 	
 	public Notification createNotification() {
@@ -32,7 +45,22 @@ public class NotificationForm {
 
 	
 	
-    public String getShortDescription() {
+	
+    public Long getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+
+	public String getShortDescription() {
 		return shortDescription;
 	}
 
@@ -96,4 +124,83 @@ public class NotificationForm {
 		this.user = user;
 	}
 
+	
+
+
+	public List<Notification> getSearchNotifications() {
+		return searchNotifications;
+	}
+
+
+
+	public void setSearchNotifications(List<Notification> searchNotifications) {
+		this.searchNotifications = searchNotifications;
+	}
+	
+	
+	
+
+
+
+
+
+
+	public Long getOldType() {
+		return oldType;
+	}
+
+
+
+	public void setOldType(Long oldType) {
+		this.oldType = oldType;
+	}
+
+
+
+	public Long getOldSubcategory() {
+		return oldSubcategory;
+	}
+
+
+
+	public void setOldSubcategory(Long oldSubcategory) {
+		this.oldSubcategory = oldSubcategory;
+	}
+
+
+	
+	
+	
+
+	public Notification getNotificationDetails() {
+		return notificationDetails;
+	}
+
+
+
+
+	public void setNotificationDetails(Notification notificationDetails) {
+		this.notificationDetails = notificationDetails;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "NotificationForm [id=" + id + ", shortDescription="
+				+ shortDescription + ", name=" + name + ", category="
+				+ category + ", subcategory=" + subcategory + ", type=" + type
+				+ ", status=" + status + ", priority=" + priority + ", user="
+				+ user + ", oldType=" + oldType + ", oldSubcategory="
+				+ oldSubcategory + ", notificationDetails="
+				+ notificationDetails + ", searchNotifications="
+				+ searchNotifications + "]";
+	}
+
+
+
+
+	
+	
 }
