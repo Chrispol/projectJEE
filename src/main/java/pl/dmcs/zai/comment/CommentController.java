@@ -52,7 +52,9 @@ public class CommentController {
 		MessageHelper.addSuccessAttribute(ra, "Dodano komentarz do zgloszenia o id:"+ commentForm.getNotificationId());
 		Comment comment = commentForm.createComment();
 		comment.setUser(user);
+		log.info("comment.getUser:"+comment.getUser());
 		commentService.saveComment(comment);
+		commentForm.setContent(null);
 		return null;
 	}
 	

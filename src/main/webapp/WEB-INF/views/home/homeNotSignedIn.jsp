@@ -186,6 +186,7 @@ $(document).ready(
 		<th>Priorytet</th>
 		<th>Uzytkownik</th>
 		<th width="15%">Akcja</th>
+		<th width="15%">Akcja</th>
 	</tr>
 	<c:forEach items="${notificationForm.searchNotifications}"  var="notification">
 					<tr   >
@@ -201,6 +202,12 @@ $(document).ready(
 						<td width="15%">
 							<form action="shownotification" method="get">
 								<input type="submit" value="Szególy" >						
+								<input style="visibility:hidden" type="text" name="id"  value ="${notification.id}" >
+							</form>												
+						</td>
+						<td width="15%">
+							<form action="addcomment" method="get">
+								<input type="submit" value="Dodaj komentarz" >						
 								<input style="visibility:hidden" type="text" name="id"  value ="${notification.id}" >
 							</form>												
 						</td>
