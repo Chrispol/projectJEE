@@ -13,7 +13,7 @@
         <!-- <a class="navbar-brand" href="#">Serwis</a> -->
         <div class="nav-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/ex2">Strona główna</a></li>
+                <li class="active"><a href="/ex2">Start</a></li>
                 <li><a href='<s:url value="/homeSignedIn"></s:url>'>Moje</a></li>
                 <li><a href='<s:url value="/homeNotSignedIn"></s:url>'>Wszystkie</a></li>
                 <li><a href='<s:url value="/addnotification"></s:url>'>Dodaj</a></li>
